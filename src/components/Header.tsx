@@ -7,14 +7,30 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Check for logged in user
+    const storedName = localStorage.getItem("currentUserName");
+    if (storedName) {
+      setUserName(storedName);
+    }
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUserName");
+    localStorage.removeItem("userPassword"); // Optional: clear password too if desired, though previously asked to store it. keeping for now or clearing? usually logout clears session.
+    sessionStorage.removeItem("userPassword");
+    setUserName(null);
+    window.location.reload();
+  };
 
   const dropdownItemsMap: Record<
     string,
@@ -157,13 +173,44 @@ const Header = () => {
             )}
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Button or User Profile */}
           <div className="hidden lg:block">
-            <a href="/login">
-              <Button variant="customers" size="default">
-                CUSTOMERS
-              </Button>
-            </a>
+            {userName ? (
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xs">
+                    {userName.charAt(0).toUpperCase()}
+                  </div>
+                  <span
+                    className={cn(
+                      "text-sm font-medium",
+                      isScrolled ? "text-foreground" : "text-white"
+                    )}
+                  >
+                    {userName}
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className={cn(
+                    "text-xs",
+                    isScrolled
+                      ? "text-muted-foreground hover:text-primary"
+                      : "text-white/80 hover:text-white"
+                  )}
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <a href="/login">
+                <Button variant="customers" size="default">
+                  CUSTOMERS
+                </Button>
+              </a>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -207,11 +254,32 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
-            <a href="/login" className="w-full mt-2">
-              <Button variant="customers" className="w-full">
-                CUSTOMERS
-              </Button>
-            </a>
+            {userName ? (
+              <div className="flex flex-col gap-2 border-t pt-4 mt-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xs">
+                    {userName.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="text-sm font-medium text-foreground">
+                    {userName}
+                  </span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="w-full justify-start"
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <a href="/login" className="w-full mt-2">
+                <Button variant="customers" className="w-full">
+                  CUSTOMERS
+                </Button>
+              </a>
+            )}
           </nav>
         </div>
       </div>

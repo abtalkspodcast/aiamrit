@@ -13,9 +13,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { db } from "@/lib/db";
+import { toast } from "sonner";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("login");
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -26,18 +30,68 @@ const Auth = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login:", { loginEmail, loginPassword });
-    // Implement login logic
+    console.log("Login attempt:", { loginEmail });
+
+    const result = db.verifyUser(loginEmail, loginPassword);
+
+    if (result.success) {
+      toast.success(result.message);
+      // Store password as requested (insecure, but per user request)
+      localStorage.setItem("userPassword", loginPassword);
+      sessionStorage.setItem("userPassword", loginPassword);
+
+      // Simulate login session state if needed, for now just redirect
+      localStorage.setItem("currentUserName", loginEmail.split("@")[0]); // Use email alias for now as we don't store login name in this simple mockup db (unless we look it up, which I can do)
+      // Actually let's look up the name if possible, but db.verifyUser only returns success/message.
+      // For simplicity in this artifact, I'll just use the part before @ if name isn't returned,
+      // OR better, I should update db.ts to return the user object or name.
+      // But to avoid touching db.ts unnecessarily, using email alias is a safe fallback for "Login".
+
+      setTimeout(() => {
+        window.location.href = "/"; // Force reload to update Header
+      }, 1000);
+    } else {
+      toast.error(result.message);
+    }
   };
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     if (signupPassword !== signupConfirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
-    console.log("Signup:", { signupName, signupEmail, signupPassword });
-    // Implement signup logic
+
+    const newUser = {
+      name: signupName,
+      email: signupEmail,
+      password: signupPassword,
+    };
+
+    const result = db.addUser(newUser);
+
+    if (result.success) {
+      toast.success(result.message);
+      // Store password as requested (insecure, but per user request)
+      localStorage.setItem("userPassword", signupPassword);
+      sessionStorage.setItem("userPassword", signupPassword);
+
+      // Switch to login tab
+      setActiveTab("login");
+      setLoginEmail(signupEmail); // Pre-fill email
+      setSignupName("");
+      setSignupEmail("");
+      setSignupPassword("");
+      setSignupConfirmPassword("");
+
+      // Also log them in immediately for better UX
+      localStorage.setItem("currentUserName", newUser.name);
+      setTimeout(() => {
+        window.location.href = "/"; // Force reload to update Header
+      }, 1000);
+    } else {
+      toast.error(result.message);
+    }
   };
 
   return (
@@ -61,7 +115,11 @@ const Auth = () => {
           <CardDescription>Manage your account and services</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Sign In</TabsTrigger>
               <TabsTrigger value="register">Sign Up</TabsTrigger>
