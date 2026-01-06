@@ -124,7 +124,7 @@ const Header = () => {
                 >
                   <button
                     className={cn(
-                      "flex items-center gap-1 text-xs font-medium tracking-widest transition-colors duration-300",
+                      "flex items-center gap-1 text-sm font-medium tracking-widest transition-colors duration-300",
                       activeDropdown === item.label
                         ? "text-secondary"
                         : isScrolled
@@ -161,7 +161,7 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "text-xs font-medium tracking-widest transition-colors duration-300",
+                    "text-sm font-medium tracking-widest transition-colors duration-300",
                     isScrolled
                       ? "text-foreground/80 hover:text-secondary"
                       : "text-white/90 hover:text-white"
