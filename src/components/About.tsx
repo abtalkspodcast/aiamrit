@@ -1,9 +1,11 @@
 import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import aboutImage from "@/assets/about-buildings.jpg";
 import smallImage from "@/assets/shutterstock_1691110705-768x512.webp";
 
 const About = () => {
+  const navigate = useNavigate();
   const [offsetY, setOffsetY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -57,7 +59,10 @@ const About = () => {
               can be tailored to the unique requirements of your building,
               Bright Connect is able to give you more.
             </p>
-            <Button className="bg-[#334195] hover:bg-[#2a367e] text-white px-8 py-6 text-sm font-bold uppercase tracking-wide rounded shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button
+              className="bg-[#334195] hover:bg-[#2a367e] text-white px-8 py-6 text-sm font-bold uppercase tracking-wide rounded shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => navigate("/contact")}
+            >
               CONTACT US
             </Button>
           </div>

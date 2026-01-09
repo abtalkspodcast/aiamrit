@@ -1,95 +1,196 @@
-import { Mail, Phone, MapPin, Linkedin, Facebook, Twitter } from 'lucide-react';
+import { Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center mb-6">
-              <span className="text-2xl font-bold text-white">Bright</span>
-              <span className="text-2xl font-bold text-secondary">Connect</span>
-            </div>
-            <p className="text-white/70 mb-6">
-              Your partners in power, water, and broadband. Connecting WA with sustainable solutions.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
-                <Twitter className="w-5 h-5" />
+    <footer className="bg-[#2D3092] text-white font-sans py-12">
+      <div className="container-custom">
+        {/* Top Banner - Box inside Footer */}
+        <div className="w-full bg-[#63C7D0] py-12 px-8 rounded-2xl shadow-none mb-16">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-white max-w-lg leading-tight">
+              Your partners in power, water & broadband.
+            </h2>
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <span className="text-white text-lg font-medium">
+                Check out our latest news!
+              </span>
+              <a
+                href="/news"
+                className="bg-[#2D3092] hover:bg-[#1f216b] text-white px-6 py-3 rounded text-sm font-bold transition-colors shadow-md"
+              >
+                What's the latest
               </a>
             </div>
           </div>
-          
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              {['About Us', 'Products & Solutions', 'Case Studies', 'News', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/70 hover:text-secondary transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="w-8 flex justify-center">
+                <Phone className="w-6 h-6 text-[#63C7D0]" />
+              </div>
+              <a
+                href="tel:1300908760"
+                className="text-white font-medium hover:text-[#63C7D0] transition-colors"
+              >
+                1300 908 760
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-8 flex justify-center">
+                <Mail className="w-6 h-6 text-[#63C7D0] fill-current" />
+              </div>
+              <a
+                href="mailto:connect@brightconnect.com.au"
+                className="text-white font-medium hover:text-[#63C7D0] transition-colors"
+              >
+                connect@brightconnect.com.au
+              </a>
+            </div>
           </div>
-          
-          {/* Services */}
+
+          {/* Products & Solutions */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Services</h4>
-            <ul className="space-y-3">
-              {['Community Energy', 'Solar & Batteries', 'EV Charging', 'Broadband', 'Meter Reading'].map((service) => (
-                <li key={service}>
-                  <a href="#" className="text-white/70 hover:text-secondary transition-colors">
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Contact */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                <span className="text-white/70">Perth, Western Australia</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
-                <a href="tel:+61000000000" className="text-white/70 hover:text-secondary transition-colors">
-                  +61 (0) 000 000 000
+            <h4 className="text-lg font-bold mb-6 text-white">
+              Products & Solutions
+            </h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a
+                  href="/community-energy-networks"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Community Energy Networks
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
-                <a href="mailto:info@brightconnect.com.au" className="text-white/70 hover:text-secondary transition-colors">
-                  info@brightconnect.com.au
+              <li>
+                <a
+                  href="/solar-batteries"
+                  className="text-white hover:text-[#63C7D0] transition-colors"
+                >
+                  Solar & Batteries
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#energy-reviews"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Energy Reviews & Procurement
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#ev-charging"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Electric Vehicle Charging
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#hot-water"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Centralised Hot Water
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#broadband"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Broadband
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#meter-reading"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Meter Reading
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Customers */}
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">Customers</h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Move In
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Move Out
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Pay Your Bill
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Who we work with */}
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">
+              Who we work with
+            </h4>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a
+                  href="#new-developments"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  New Developments
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#existing-buildings"
+                  className="text-[#63C7D0] hover:text-white transition-colors"
+                >
+                  Existing Buildings
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        
+
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/60 text-sm">
-            © {currentYear} Bright Connect. All rights reserved.
+        <div className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
+          <p>
+            Copyright © {currentYear} Bright Connect. |{" "}
+            <a href="#privacy" className="hover:underline">
+              Privacy Policy
+            </a>
           </p>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="text-white/60 hover:text-secondary transition-colors">Privacy Policy</a>
-            <a href="#" className="text-white/60 hover:text-secondary transition-colors">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

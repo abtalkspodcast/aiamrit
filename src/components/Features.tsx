@@ -21,7 +21,7 @@ const Features = () => {
               MORE ABOUT US
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="text-[#00AEEF]">Connect with the best</span>
+              <span className="text-[#00AEEF]">Connect with the best</span>
             </h2>
             <h3 className="text-xl font-bold mb-6 text-white">
               We're pretty switched on.
@@ -40,7 +40,7 @@ const Features = () => {
 
           {/* Right Content - Features List */}
           <div className="bg-[#133B5C] rounded-xl p-10 md:p-12">
-            <h4 className="text-xl font-bold mb-8 text-[#1A202C]">
+            <h4 className="text-xl font-bold mb-8 text-white">
               Why Choose Bright Connect?
             </h4>
             <ul className="space-y-6">

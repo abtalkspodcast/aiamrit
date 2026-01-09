@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-building.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -22,7 +25,7 @@ const Hero = () => {
             bright ideas
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-10">
+          <p className="text-xl md:text-2xl text-white/90 mb-10 animate-rise-up">
             Your partners in power, water, and broadband.
           </p>
 
@@ -31,6 +34,7 @@ const Hero = () => {
               variant="hero"
               size="xl"
               className="uppercase text-sm tracking-widest font-medium"
+              onClick={() => navigate("/contact")}
             >
               New Developments
             </Button>
@@ -38,6 +42,7 @@ const Hero = () => {
               variant="heroOutline"
               size="xl"
               className="uppercase text-sm tracking-widest font-medium"
+              onClick={() => navigate("/contact")}
             >
               Existing Buildings
             </Button>

@@ -37,18 +37,20 @@ const Header = () => {
     Array<{ label: string; href: string }>
   > = {
     "PRODUCTS & SOLUTIONS": [
-      { label: "COMMUNITY ENERGY NETWORKS", href: "#community-energy" },
-      { label: "SOLAR & BATTERIES", href: "#solar" },
-      { label: "ENERGY REVIEWS & PROCUREMENT", href: "#energy-reviews" },
-      { label: "ELECTRIC VEHICLE CHARGING", href: "#ev-charging" },
-      { label: "CENTRALISED HOT WATER", href: "#hot-water" },
-      { label: "BROADBAND", href: "#broadband" },
-      { label: "METER READING", href: "#meter-reading" },
+      {
+        label: "COMMUNITY ENERGY NETWORKS",
+        href: "/community-energy-networks",
+      },
+      { label: "SOLAR & BATTERIES", href: "/solar-batteries" },
+      { label: "ENERGY REVIEWS & PROCUREMENT", href: "/energy-reviews" },
+      { label: "ELECTRIC VEHICLE CHARGING", href: "/ev-charging" },
+      { label: "CENTRALISED HOT WATER", href: "/hot-water" },
+      { label: "BROADBAND", href: "/broadband" },
+      { label: "METER READING", href: "/meter-reading" },
     ],
     "WHO WE WORK WITH": [
-      { label: "DEVELOPERS", href: "#developers" },
-      { label: "STRATA MANAGERS", href: "#strata" },
-      { label: "OWNERS CORPORATIONS", href: "#owners" },
+      { label: "NEW DEVELOPMENTS", href: "/new-developments" },
+      { label: "EXISTING BUILDINGS", href: "/existing-buildings" },
     ],
     "CASE STUDIES": [
       { label: "RESIDENTIAL", href: "#residential" },
@@ -61,11 +63,11 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "ABOUT", href: "#about" },
+    { label: "ABOUT", href: "/about" },
     { label: "PRODUCTS & SOLUTIONS", href: "#services", hasDropdown: true },
-    { label: "WHO WE WORK WITH", href: "#clients", hasDropdown: true },
-    { label: "CASE STUDIES", href: "#case-studies", hasDropdown: true },
-    { label: "NEWS", href: "#news", hasDropdown: true },
+    { label: "WHO WE WORK WITH", href: "/who-we-work-with", hasDropdown: true },
+    { label: "CASE STUDIES", href: "/case-studies" },
+    { label: "NEWS", href: "/news" },
   ];
 
   return (
@@ -78,21 +80,33 @@ const Header = () => {
       )}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
+        <div className="h-16 grid grid-cols-[1fr_auto_1fr] items-center">
+          {/* Logo - Left aligned */}
+          <a
+            href="/"
+            className="flex items-center gap-3 shrink-0 justify-self-start"
+          >
             {/* Logo Icon */}
             <svg
-              className="w-8 h-8"
+              className={cn(
+                "w-8 h-8 transition-colors duration-300",
+                isScrolled ? "text-[#2B3990]" : "text-white"
+              )}
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M16 2L4 8V12L16 6L28 12V8L16 2Z" fill="white" />
-              <path d="M16 10L4 16V20L16 14L28 20V16L16 10Z" fill="white" />
-              <path d="M16 18L4 24V28L16 22L28 28V24L16 18Z" fill="white" />
+              <path d="M16 2L4 8V12L16 6L28 12V8L16 2Z" fill="currentColor" />
+              <path
+                d="M16 10L4 16V20L16 14L28 20V16L16 10Z"
+                fill="currentColor"
+              />
+              <path
+                d="M16 18L4 24V28L16 22L28 28V24L16 18Z"
+                fill="currentColor"
+              />
             </svg>
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <span
                 className={cn(
                   "text-lg font-bold tracking-wide transition-colors duration-300",
@@ -112,8 +126,8 @@ const Header = () => {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation - Center aligned */}
+          <nav className="hidden lg:flex items-center gap-6 justify-self-center">
             {navItems.map((item) =>
               item.hasDropdown ? (
                 <div
@@ -124,7 +138,7 @@ const Header = () => {
                 >
                   <button
                     className={cn(
-                      "flex items-center gap-1 text-sm font-medium tracking-widest transition-colors duration-300",
+                      "flex items-center gap-1 text-xs font-medium tracking-widest transition-colors duration-300 whitespace-nowrap",
                       activeDropdown === item.label
                         ? "text-secondary"
                         : isScrolled
@@ -139,7 +153,7 @@ const Header = () => {
                   {/* Dropdown Menu */}
                   <div
                     className={cn(
-                      "absolute top-full left-0 mt-2 bg-white rounded-md shadow-lg py-2 min-w-[280px] z-50 transition-all duration-200",
+                      "absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-md shadow-lg py-2 min-w-[280px] z-50 transition-all duration-200",
                       activeDropdown === item.label
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
@@ -149,7 +163,7 @@ const Header = () => {
                       <a
                         key={dropItem.label}
                         href={dropItem.href}
-                        className="block px-6 py-3 text-xs font-medium tracking-wider text-foreground/80 hover:text-secondary hover:bg-muted/50 transition-colors"
+                        className="block px-6 py-3 text-xs font-medium tracking-wider text-foreground/80 hover:text-secondary hover:bg-muted/50 transition-colors whitespace-nowrap"
                       >
                         {dropItem.label}
                       </a>
@@ -161,7 +175,7 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "text-sm font-medium tracking-widest transition-colors duration-300",
+                    "text-xs font-medium tracking-widest transition-colors duration-300 whitespace-nowrap",
                     isScrolled
                       ? "text-foreground/80 hover:text-secondary"
                       : "text-white/90 hover:text-white"
@@ -173,8 +187,8 @@ const Header = () => {
             )}
           </nav>
 
-          {/* CTA Button or User Profile */}
-          <div className="hidden lg:block">
+          {/* CTA Button or User Profile - Right aligned */}
+          <div className="hidden lg:flex items-center justify-end shrink-0 justify-self-end">
             {userName ? (
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
@@ -205,11 +219,27 @@ const Header = () => {
                 </Button>
               </div>
             ) : (
-              <a href="/login">
-                <Button variant="customers" size="default">
-                  CUSTOMERS
-                </Button>
-              </a>
+              <div className="flex items-center gap-4">
+                <a href="/login">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={cn(
+                      "text-xs font-bold tracking-wider",
+                      isScrolled
+                        ? "text-foreground hover:text-primary"
+                        : "text-white hover:text-white/80"
+                    )}
+                  >
+                    LOGIN
+                  </Button>
+                </a>
+                <a href="/contact">
+                  <Button variant="customers" size="default">
+                    CUSTOMERS
+                  </Button>
+                </a>
+              </div>
             )}
           </div>
 
