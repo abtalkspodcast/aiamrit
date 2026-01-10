@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -80,7 +80,7 @@
     --border: 203 40% 25%;
     --input: 203 40% 25%;
     --ring: 191 100% 39%;
-    
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -98,22 +98,33 @@
   }
 
   html {
-    font-size: 14px; /* Reduced base size */
+    font-size: 16px; /* Better base size for mobile */
     margin: 0;
     padding: 0;
     background-color: hsl(var(--background));
   }
 
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px; /* Slightly smaller on mobile */
+    }
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", sans-serif;
     @apply font-bold text-primary;
   }
 }
@@ -124,7 +135,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 sm:py-16 md:py-24;
   }
 
   .text-gradient {
@@ -136,28 +147,37 @@
   }
 
   .service-card {
-    @apply bg-card p-8 rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-border;
+    @apply bg-card p-6 sm:p-8 rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-border;
   }
 
   .service-icon {
-    @apply w-16 h-16 mx-auto mb-4 text-secondary;
+    @apply w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-secondary;
   }
 }
 
 @layer utilities {
   .hero-overlay {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
   }
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   .hover-float:hover {
     animation: float 3s ease-in-out infinite;
   }
-  
+
   @keyframes rise-up {
     0% {
       opacity: 0;

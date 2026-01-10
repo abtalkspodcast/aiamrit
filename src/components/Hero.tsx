@@ -18,22 +18,22 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 container-custom px-4">
-        <div className="max-w-4xl animate-fade-in text-left pl-8 md:pl-16">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <div className="max-w-4xl animate-fade-in text-center lg:text-left lg:pl-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
             We're full of
             <br />
             bright ideas
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-10 animate-rise-up">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-10 animate-rise-up">
             Your partners in power, water, and broadband.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
             <Button
               variant="hero"
               size="xl"
-              className="uppercase text-sm tracking-widest font-medium"
+              className="uppercase text-sm tracking-widest font-medium w-full sm:w-auto"
               onClick={() => navigate("/contact")}
             >
               New Developments
@@ -41,7 +41,7 @@ const Hero = () => {
             <Button
               variant="heroOutline"
               size="xl"
-              className="uppercase text-sm tracking-widest font-medium"
+              className="uppercase text-sm tracking-widest font-medium w-full sm:w-auto"
               onClick={() => navigate("/contact")}
             >
               Existing Buildings

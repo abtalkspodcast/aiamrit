@@ -80,11 +80,11 @@ const Header = () => {
       )}
     >
       <div className="container-custom">
-        <div className="h-16 grid grid-cols-[1fr_auto_1fr] items-center">
-          {/* Logo - Left aligned */}
+        <div className="h-16 flex lg:grid lg:grid-cols-[1fr_auto_1fr] items-center justify-between lg:justify-start">
+          {/* Logo - Center aligned on mobile, left on desktop */}
           <a
             href="/"
-            className="flex items-center gap-3 shrink-0 justify-self-start"
+            className="flex items-center gap-3 shrink-0 lg:justify-self-start mx-auto lg:mx-0"
           >
             {/* Logo Icon */}
             <svg
@@ -243,9 +243,9 @@ const Header = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Absolute positioned */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 absolute right-4 top-1/2 -translate-y-1/2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -271,22 +271,22 @@ const Header = () => {
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-300",
-            isMenuOpen ? "max-h-96 pb-6" : "max-h-0"
+            isMenuOpen ? "max-h-[600px] pb-6" : "max-h-0"
           )}
         >
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col gap-2 items-center text-center">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-xs font-medium tracking-widest text-foreground/80 hover:text-secondary transition-colors duration-200 py-2"
+                className="text-xs font-medium tracking-widest text-foreground/80 hover:text-secondary transition-colors duration-200 py-3 w-full"
               >
                 {item.label}
               </a>
             ))}
             {userName ? (
-              <div className="flex flex-col gap-2 border-t pt-4 mt-2">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col gap-3 border-t pt-4 mt-2 w-full items-center">
+                <div className="flex items-center gap-2 justify-center">
                   <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xs">
                     {userName.charAt(0).toUpperCase()}
                   </div>
@@ -298,14 +298,14 @@ const Header = () => {
                   variant="outline"
                   size="sm"
                   onClick={handleLogout}
-                  className="w-full justify-start"
+                  className="w-full max-w-xs"
                 >
                   Logout
                 </Button>
               </div>
             ) : (
-              <a href="/login" className="w-full mt-2">
-                <Button variant="customers" className="w-full">
+              <a href="/login" className="w-full mt-2 flex justify-center">
+                <Button variant="customers" className="w-full max-w-xs">
                   CUSTOMERS
                 </Button>
               </a>

@@ -7,13 +7,13 @@ const Footer = () => {
     <footer className="bg-[#2D3092] text-white font-sans py-12">
       <div className="container-custom">
         {/* Top Banner - Box inside Footer */}
-        <div className="w-full bg-[#63C7D0] py-12 px-8 rounded-2xl shadow-none mb-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-white max-w-lg leading-tight">
+        <div className="w-full bg-[#63C7D0] py-8 sm:py-12 px-6 sm:px-8 rounded-2xl shadow-none mb-12 sm:mb-16">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 text-center md:text-left">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white max-w-lg leading-tight">
               Your partners in power, water & broadband.
             </h2>
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <span className="text-white text-lg font-medium">
+            <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
+              <span className="text-white text-base sm:text-lg font-medium">
                 Check out our latest news!
               </span>
               <a
@@ -26,10 +26,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
           {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
+          <div className="space-y-6 text-center md:text-left">
+            <div className="flex items-center gap-4 justify-center md:justify-start">
               <div className="w-8 flex justify-center">
                 <Phone className="w-6 h-6 text-[#63C7D0]" />
               </div>
@@ -40,7 +40,7 @@ const Footer = () => {
                 1300 908 760
               </a>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 justify-center md:justify-start">
               <div className="w-8 flex justify-center">
                 <Mail className="w-6 h-6 text-[#63C7D0] fill-current" />
               </div>
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
 
           {/* Products & Solutions */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-lg font-bold mb-6 text-white">
               Products & Solutions
             </h4>
@@ -119,7 +119,7 @@ const Footer = () => {
           </div>
 
           {/* Customers */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-lg font-bold mb-6 text-white">Customers</h4>
             <ul className="space-y-3 text-sm">
               <li>
@@ -158,7 +158,7 @@ const Footer = () => {
           </div>
 
           {/* Who we work with */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-lg font-bold mb-6 text-white">
               Who we work with
             </h4>
@@ -184,7 +184,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
+        <div className="mt-12 sm:mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60 text-center md:text-left">
           <p>
             Copyright © {currentYear} Bright Connect. |{" "}
             <a href="#privacy" className="hover:underline">
