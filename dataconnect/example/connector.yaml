@@ -1,8 +1,0 @@
-connectorId: example
-generate:
-  javascriptSdk:
-    - outputDir: ..\..\bright-connect-clone-main\src\dataconnect-generated
-      package: "@dataconnect/generated"
-      packageJsonDir: ..\..\bright-connect-clone-main
-      react: true
-      angular: false
